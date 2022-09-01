@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="module">
+    import init, {make_request} from './out/axum_browser.js';
+
+    async function run() {
+        await init();
+        document.documentElement.innerHTML = await make_request(window.location.href);
+
+        document.querySelector('a').addEventListener("click", async (event) => {
+            event.preventDefault();
+            document.documentElement.innerHTML = await make_request(event.target.href);
+        });
+    }
+
+    run();
+</script>
+</body>
+</html>
